@@ -1,0 +1,118 @@
+CREATE DATABASE SQL_PROJECT;
+
+SHOW DATABASE--------------------------------------------------------------------------------------
+
+SELECT * FROM dataset1;
+SELECT * FROM dataset2;
+
+WHAT IS THE TOTAL POPULATION OF THE CENSUS 2011?----------------------------------------------------
+
+SELECT SUM(population) 
+AS total_population
+FROM dataset2;
+
+WHAT IS THE TOTAL POPULATION OF EACH STATE IN THE CENSUS 2011 DATA?----------------------------------
+
+SELECT state, 
+sum(population)
+ As total_population 
+ from dataset2 
+ group by State;
+
+ VARIATION OF LITERACY RATES ACROSS DIFFERENT STATES:-------------------------------------------------------
+ 
+
+ SELECT state, avg(literacy) 
+ as average_literacy_rate 
+ from dataset1 
+ group by state;
+
+ AVERAGE SEX RATIO FOR EACH STATE:--------------------------------------------------------------------------
+
+ 
+ SELECT state, avg(sex_ratio) 
+ as average_sex_ratio
+ from dataset1
+ group by State;
+
+ DISTRICT WITH THE HIGHEST POPULATION GROWTH:----------------------------------------------------------------
+
+ 
+ SELECT district, growth
+ AS growth_rate
+ FROM dataset1
+ ORDER BY Growth DESC
+ limit 1;
+
+ DISTRICTS WITH THE HIGHEST LITERACY RATES:--------------------------------------------------------------------
+
+ 
+ SELECT district, literacy
+ FROM dataset1
+ ORDER BY Literacy DESC
+ LIMIT 1;
+
+ DISTRICTS WITH THE LOWEST LITERACY RATES:----------------------------------------------------------------------
+
+ 
+ SELECT district, literacy
+ FROM dataset1
+ ORDER BY Literacy ASC
+ LIMIT 1;
+
+ SHOW ALL DATA IN THE ONE TABLE AFTER JOINING BOTH DATASET INTO TABLE BASED ON THE DISTRICTS:--------------------
+
+ 
+ SELECT *
+ FROM dataset1
+ INNER JOIN dataset2 
+ ON dataset1.District = dataset2.District;
+
+ OVERALL SEX RATIO AND COMPARISON TO NATIONAL AVERAGE:------------------------------------------------------------
+
+ 
+ SELECT AVG(sex_ratio) 
+ AS overall_averge_sex_ratio
+ FROM dataset1;
+
+ STATES WITH THE HIGHEST AVERAGE GROWTH RATES:-------------------------------------------------------------------
+
+ 
+ SELECT state, AVG(growth) 
+ AS average_growth_rate
+FROM dataset1
+GROUP BY state
+ORDER BY average_growth_rate DESC
+LIMIT 1;
+
+STATES WITH THE LOWEST AVERAGE GROWTH RATES:------------------------------------------------------
+
+
+SELECT state, AVG(growth) 
+AS average_growth_rate
+FROM dataset1
+GROUP BY state
+ORDER BY average_growth_rate ASC
+LIMIT 1;
+
+DISTRICTS WITH THE HIGHEST POPULATION DENSITY:----------------------------------------------------
+
+
+SELECT District, Area_km2, 
+Population
+AS population_density
+FROM dataset2
+ORDER BY population_density DESC
+LIMIT 1;
+
+DISTRICTS WITH THE LOWEST POPULATION DENSITY:------------------------------------------------------
+SELECT District, Area_km2, 
+Population 
+As population_density
+FROM dataset2
+ORDER BY population_density ASC
+LIMIT 1;
+
+
+-------------------------------------------------------------------------------------------------------------
+
